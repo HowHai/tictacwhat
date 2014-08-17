@@ -20,23 +20,36 @@
   <body ng-controller="MainCtrl">
     <ion-pane>
       <!-- Header -->
-      <ion-header-bar class="bar-calm">
+      <ion-header-bar class="bar-positive">
         <h1 class="title">Tic Tac What?</h1>
       </ion-header-bar>
 
       <!-- Game board -->
-      <ion-content>
+<!--       <ion-content>
         <div id="innerBoard">
-          <div x-ng-style="{background: generateColor(cell)}" x-ng-repeat="cell in gameBoard track by $index" x-ng-click="attackCell($index)" x-ng-class="{clear: ($index % 3 == 0), diamond: true}">
-          {{$index}}
+          <div ng-style="{background: generateColor(cell)}"
+               ng-repeat="cell in gameBoard track by $index"
+               ng-click="attackCell($index)"
+               ng-class="{clear: ($index % 3 == 0), diamond: true}">
+            {{$index}}
           </div>
         </div>
       </ion-content>
-
+ -->
+      <div id="innerBoard">
+        <div ng-repeat="row in gameArray">
+          <div class    ="diamond"
+               id       ="{{territory}}"
+               ng-repeat="territory in row"
+               ng-click ="selectedTerritory(territory)">
+            {{ territory }}
+          </div>
+        </div>
+      </div>
       <!-- Footer -->
       <ion-footer-bar align-title="center" class="bar-assertive">
         <div class="buttons">
-          <button class="button">Play</button>
+          <button class="button" ng-click="botMode()">Play</button>
         </div>
         <h1 class="title"></h1>
         <div class="buttons" ng-click="doSomething()">
