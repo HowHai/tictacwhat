@@ -26,9 +26,11 @@ angular.module('tictacwhat', ['ionic'])
     return document.getElementById(id).innerText;
   }
 
-  function displayStatus(status){
+  function displayStatus(message){
+    $scope.status.message = message;
   };
 
+  $scope.status = {};
   var playerOneMoves = [];
   var playerTwoMoves = [];
   var gameBoard = [];
@@ -37,6 +39,7 @@ angular.module('tictacwhat', ['ionic'])
   var gameOver = true;
   var botMode = false;
   var playerMode = false;
+  $scope.status.message = "Click play to start";
 
   $scope.gameArray = [[0,1,2],[3,4,5],[6,7,8]];
 

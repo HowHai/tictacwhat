@@ -23,19 +23,16 @@
       <ion-header-bar class="bar-positive">
         <h1 class="title">Tic Tac What?</h1>
       </ion-header-bar>
-
-      <!-- Game board -->
-<!--       <ion-content>
-        <div id="innerBoard">
-          <div ng-style="{background: generateColor(cell)}"
-               ng-repeat="cell in gameBoard track by $index"
-               ng-click="attackCell($index)"
-               ng-class="{clear: ($index % 3 == 0), diamond: true}">
-            {{$index}}
-          </div>
+      <div class="bar bar-subheader">
+        <div class="buttons">
+          <button class="button">Player 1</button>
         </div>
-      </ion-content>
- -->
+        <h3 class="title">{{ status.message }}</h3>
+        <div class="buttons">
+          <button class="button">Player 2</button>
+        </div>
+      </div>
+
       <div id="innerBoard">
         <div ng-repeat="row in gameArray">
           <div class    ="diamond"
