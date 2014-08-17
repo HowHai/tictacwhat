@@ -1,0 +1,39 @@
+/* Empty. Add your own CSS if you like */
+
+#gameBoard {
+  border: 10px solid black;
+  width: 300px;
+  height: 300px;
+  // background-image: -webkit-gradient(linear, left top, left bottom, from(#edcc4e), to(#edcc4e),color-stop(0.9, #e84f28));
+}
+
+.clear {
+  clear: both;
+  border: 2px solid black;
+}
+
+#innerBoard {
+  margin: 50px auto;
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#bf3715), to(#d69a16),color-stop(0.4, #ce7816));
+}
+
+.diamond {
+  margin: 9px;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border: 8px outset grey;
+  cursor: pointer;
+
+  text-align: center;
+  font-size: 10px;
+  color: white;
+
+  text-shadow: 1px 1px 1px #000;
+  -webkit-box-shadow: 2px 2px 3px #999;
+  box-shadow: 2px 2px 2px #bbb;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e9ede8), to(#ce401c),color-stop(0.4, #8c1b0b));
+}
