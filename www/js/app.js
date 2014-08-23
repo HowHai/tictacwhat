@@ -39,9 +39,10 @@ angular.module('tictacwhat', ['ionic'])
   var gameOver = true;
   var botMode = false;
   var playerMode = false;
+  var randomBoard = [];
   $scope.status.message = "Click play to start";
 
-  $scope.gameArray = [[0,1,2],[3,4,5],[6,7,8]];
+  $scope.gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
   var winCondition = [
                           [0,1,2], [3,4,5], [6,7,8],
@@ -55,6 +56,36 @@ angular.module('tictacwhat', ['ionic'])
     displayStatus("France's Turn");
   };
 
+  // Generate a random board on page load
+  makeNewBoard(randomBoard);
+  generateBoard(randomBoard);
+  var originalBoard = randomBoard;
+
+  // Make function to assign gameBoard's elements to its respective index
+  function makeNewBoard(board) {
+    var oldBoard = $scope.gameBoard.slice(0);
+
+    for (var i = oldBoard.length; i > 0; i--)
+    {
+      var randChar = oldBoard[Math.floor(Math.random() * oldBoard.length)];
+      board.push(randChar);
+      var index = oldBoard.indexOf(randChar);
+
+      if (index > -1)
+        oldBoard.splice(index, 1);
+    }
+  }
+
+  // Make function to reassign board
+  function generateBoard(board)
+  {
+    for(var i = 0; i < board.length; i++)
+    {
+      var newChar = board[i];
+      $scope.gameBoard[i] = newChar;
+    };
+  }
+
   // Return true if area is taken
   function areaTaken(territory){
     var getTerritory = getInnerText(territory);
@@ -67,6 +98,7 @@ angular.module('tictacwhat', ['ionic'])
     var XorO = gameBoard.length % 2 == 0 ? "X" : "O";
 
     function playerAction(player, turn){
+      console.log("selected:", selected);
       player.push(selected);
       gameBoard.push(selected);
       getDiv.innerHTML = "<span>" + XorO + "</span>";

@@ -25,23 +25,23 @@
       </ion-header-bar>
       <div class="bar bar-subheader">
         <div class="buttons">
-          <button class="button">Player 1</button>
+          <button class="button player-avatar">Player 1</button>
         </div>
         <h3 class="title">{{ status.message }}</h3>
         <div class="buttons">
-          <button class="button">Player 2</button>
+          <button class="button player-avatar">Player 2</button>
         </div>
       </div>
 
       <div id="innerBoard">
-        <div ng-repeat="row in gameArray">
+        <!-- <div ng-repeat="row in gameArray"> -->
           <div class    ="diamond"
                id       ="{{territory}}"
-               ng-repeat="territory in row"
+               ng-repeat="territory in gameBoard"
                ng-click ="selectedTerritory(territory)">
             {{ territory }}
           </div>
-        </div>
+        <!-- </div> -->
       </div>
       <!-- Footer -->
       <ion-footer-bar align-title="center" class="bar-assertive">

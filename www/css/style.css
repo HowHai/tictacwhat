@@ -1,10 +1,7 @@
-/* Empty. Add your own CSS if you like */
-
 #gameBoard {
   border: 10px solid black;
   width: 300px;
   height: 300px;
-  // background-image: -webkit-gradient(linear, left top, left bottom, from(#edcc4e), to(#edcc4e),color-stop(0.9, #e84f28));
 }
 
 .clear {
@@ -13,11 +10,9 @@
 }
 
 #innerBoard {
-  margin: 120px auto;
+  margin: 150px auto;
   width: 300px;
   height: 300px;
-  border: 1px solid black;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#bf3715), to(#d69a16),color-stop(0.4, #ce7816));
 }
 
 .diamond {
@@ -25,15 +20,16 @@
   display: inline-block;
   width: 80px;
   height: 80px;
-  border: 8px outset grey;
+  border: 1px solid black;
   cursor: pointer;
 
   text-align: center;
-  font-size: 10px;
+  font-size: 20px;
   color: white;
+  background-color: #3498db;
+}
 
-  text-shadow: 1px 1px 1px #000;
-  -webkit-box-shadow: 2px 2px 3px #999;
-  box-shadow: 2px 2px 2px #bbb;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#e9ede8), to(#ce401c),color-stop(0.4, #8c1b0b));
+.player-avatar {
+  width: 70px;
+  height: 70px;
 }
