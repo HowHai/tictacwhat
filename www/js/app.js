@@ -17,7 +17,7 @@ angular.module('tictacwhat', ['ionic'])
     }
   });
 })
-.controller('MainCtrl', function($scope) {
+.controller('MainCtrl', function($scope, $timeout) {
   Array.prototype.last = function(){
     return this[this.length -1];
   }
@@ -33,6 +33,7 @@ angular.module('tictacwhat', ['ionic'])
   $scope.status = {};
   var playerOneMoves = [];
   var gameBoard = [];
+  var newBoard = [];
   var botMoves = [];
   var fatalBlow = [];
   var gameOver = false;
@@ -53,11 +54,36 @@ angular.module('tictacwhat', ['ionic'])
     gameOver = false;
     botMode = true;
     displayStatus("France's Turn");
+
+    $timeout(function(){
+      makeNewBoard(newBoard);
+      // generateBoard(newBoard);
+      $scope.gameBoard = newBoard;
+    }, 10000);
+
+    // When game starts, show countdown.
+    $scope.status.message = 10;
+    runCounter();
   };
 
+  function runCounter()
+  {
+    $scope.status.message -= 1;
+    if ( $scope.status.message > 0)
+      $timeout(runCounter, 1000);
+
+    if ($scope.status.message == 0)
+    {
+      $scope.status.message = "Start!";
+      $timeout(function() {
+        $scope.status.message = null;
+      }, 1500);
+    }
+  }
+
   // Generate a random board on page load
-  // makeNewBoard(randomBoard);
-  // generateBoard(randomBoard);
+  makeNewBoard(randomBoard);
+  generateBoard(randomBoard);
   var originalBoard = randomBoard;
 
   // Make function to assign gameBoard's elements to its respective index
@@ -93,6 +119,13 @@ angular.module('tictacwhat', ['ionic'])
     return takenUnits.indexOf(getTerritory) != -1 ? true : false;
   };
 
+  function pushOriginalPosition(player, indexSelected) {
+    var oldCell = $scope.gameBoard[indexSelected];
+    var originalIndex = originalBoard.indexOf(oldCell);
+    player.push(originalIndex);
+    console.log('player:', player);
+  }
+
   $scope.selectedTerritory = function(selected){
     console.log('selected:', selected);
     var getDiv = document.getElementById(selected);
@@ -100,7 +133,7 @@ angular.module('tictacwhat', ['ionic'])
     var XorO = gameBoard.length % 2 == 0 ? "X" : "O";
 
     function playerAction(player, turn){
-      player.push(selected);
+      pushOriginalPosition(player, selected);
       gameBoard.push(selected);
       getDiv.innerHTML = "<span>" + XorO + "</span>";
       displayStatus(turn);
@@ -188,7 +221,6 @@ angular.module('tictacwhat', ['ionic'])
   // AI MADNESS
   function botAI(){
     function pushData(data){
-      console.log("data:", data);
       document.getElementById(data).innerHTML = "<span>O</span>";
       botMoves.push(data);
       gameBoard.push(data);
