@@ -34,14 +34,12 @@
       </div>
 
       <div id="innerBoard">
-        <!-- <div ng-repeat="row in gameArray"> -->
           <div class    ="diamond"
-               id       ="{{territory}}"
+               id       ="{{$index}}"
                ng-repeat="territory in gameBoard"
-               ng-click ="selectedTerritory(territory)">
-            {{ territory }}
+               ng-click ="selectedTerritory($index)">
+            {{ $index }}
           </div>
-        <!-- </div> -->
       </div>
       <!-- Footer -->
       <ion-footer-bar align-title="center" class="bar-assertive">

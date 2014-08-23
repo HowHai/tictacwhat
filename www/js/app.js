@@ -32,17 +32,16 @@ angular.module('tictacwhat', ['ionic'])
 
   $scope.status = {};
   var playerOneMoves = [];
-  var playerTwoMoves = [];
   var gameBoard = [];
   var botMoves = [];
   var fatalBlow = [];
-  var gameOver = true;
-  var botMode = false;
-  var playerMode = false;
+  var gameOver = false;
+  var botMode = true;
   var randomBoard = [];
   $scope.status.message = "Click play to start";
 
-  $scope.gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+  // $scope.gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  $scope.gameBoard = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
 
   var winCondition = [
                           [0,1,2], [3,4,5], [6,7,8],
@@ -57,8 +56,8 @@ angular.module('tictacwhat', ['ionic'])
   };
 
   // Generate a random board on page load
-  makeNewBoard(randomBoard);
-  generateBoard(randomBoard);
+  // makeNewBoard(randomBoard);
+  // generateBoard(randomBoard);
   var originalBoard = randomBoard;
 
   // Make function to assign gameBoard's elements to its respective index
@@ -89,37 +88,34 @@ angular.module('tictacwhat', ['ionic'])
   // Return true if area is taken
   function areaTaken(territory){
     var getTerritory = getInnerText(territory);
-    return isNaN(getTerritory);
+    var takenUnits   = ['X', 'O'];
+
+    return takenUnits.indexOf(getTerritory) != -1 ? true : false;
   };
 
   $scope.selectedTerritory = function(selected){
+    console.log('selected:', selected);
     var getDiv = document.getElementById(selected);
-    var areaTaken = isNaN(getDiv.innerHTML);
+    var taken = areaTaken(selected);
     var XorO = gameBoard.length % 2 == 0 ? "X" : "O";
 
     function playerAction(player, turn){
-      console.log("selected:", selected);
       player.push(selected);
       gameBoard.push(selected);
       getDiv.innerHTML = "<span>" + XorO + "</span>";
       displayStatus(turn);
     };
 
-    if (XorO == 'X' && !areaTaken && !gameOver)
+    if (XorO == 'X' && !taken && !gameOver)
     {
       playerAction(playerOneMoves, "Holland's Turn");
       if (botMode)
       {
-        // TODO: Require another click to show victory when timer used
-        setTimeout(function() { botAI(); }, 2000);
-        displayStatus("Holland is thinking...");
+        botAI();
       }
     }
-    else if (!areaTaken && !gameOver && playerMode)
-      playerAction(playerTwoMoves, "France's Turn");
 
     winCheck(winCondition, playerOneMoves, "France won!");
-    winCheck(winCondition, playerTwoMoves, "Holland won!");
     winCheck(winCondition, botMoves, "Holland won!");
   };
 
@@ -192,6 +188,7 @@ angular.module('tictacwhat', ['ionic'])
   // AI MADNESS
   function botAI(){
     function pushData(data){
+      console.log("data:", data);
       document.getElementById(data).innerHTML = "<span>O</span>";
       botMoves.push(data);
       gameBoard.push(data);
