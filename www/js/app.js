@@ -196,16 +196,24 @@ angular.module('tictacwhat', ['ionic'])
       {
         var moveOne = Math.abs(botMoves.last() - winningMove[0]);
         var moveTwo = Math.abs(botMoves.last() - winningMove[1]);
+        var winningComb = getNewIndex(winningComb[0]);
+        var winningMoveOne = winningMove[0];
+        var winningMoveTwo = winningMove[1];
 
         var moveToTake = moveOne > moveTwo ? winningMove[0] : winningMove[1];
-        if (areaTaken(winningComb) && !areaTaken(winningMove[0]) && !areaTaken(winningMove[1]))
+        if (areaTaken(winningComb) && !areaTaken(winningMoveOne) && !areaTaken(winningMoveTwo))
         {
           // Hacky solution to bot's only weakness
-          fatalBlow = (areaTaken(1) && areaTaken(8) && gameBoard.length == 5) ? 6 : moveToTake;
+          var indexOne = getNewIndex(1);
+          var indexEight = getNewIndex(8);
+          fatalBlow = (areaTaken(indexOne) && areaTaken(indexEight) && gameBoard.length == 5) ? 6 : moveToTake;
           break;
         }
-        else if (areaTaken(winningMove[0]) && areaTaken(winningMove[1]))
-          fatalBlow = areaTaken(3) ? 1 : 3
+        else if (areaTaken(winningMoveOne) && areaTaken(winningMoveTwo))
+        {
+          var indexThree = getNewIndex(3);
+          fatalBlow = areaTaken(indexThree) ? 1 : 3
+        }
       }
     }
   };
@@ -223,8 +231,6 @@ angular.module('tictacwhat', ['ionic'])
   function botAI(){
     function pushData(data){
       document.getElementById(data).innerHTML = "<span>O</span>";
-      // botMoves.push(data);
-      // console.log('bot:', data);
       pushOriginalPosition(botMoves, data);
       gameBoard.push(data);
       displayStatus("France's Turn");
@@ -236,27 +242,34 @@ angular.module('tictacwhat', ['ionic'])
     // Take random corner if center is taken on first move
     if (gameBoard.length == 1) {
       var index = getNewIndex(4);
-      console.log('index:', index);
-      areaTaken(index) ? pushData(randMove) : pushData(index);
+      var randomIndex = getNewIndex(randMove);
+
+      areaTaken(index) ? pushData(randomIndex) : pushData(index);
     }
     else if (playerOneMoves.length < 5)
     {
       calculateBotMove(playerOneMoves, botMoves);
       if (fatalBlow.length == 1 && !isNaN(fatalBlow))
-        pushData(fatalBlow[0]);
+      {
+        var index = getNewIndex(fatalBlow[0]);
+        pushData(index);
+      }
       else
       {
+        var index = getNewIndex(fatalBlow[0]);
+        console.log('fatalBlow:', fatalBlow);
         botMoveChecker(winCondition, botMoves, true);
-        pushData(fatalBlow);
+        pushData(index);
       }
     }
 
-    // Get new index using old index.
-    function getNewIndex(oldIndex) {
-      var oldValue = originalBoard[oldIndex];
-      var newIndex = $scope.gameBoard.indexOf(oldValue);
-
-      return newIndex;
-    }
   };
+
+  // Get new index using old index.
+  function getNewIndex(oldIndex) {
+    var oldValue = originalBoard[oldIndex];
+    var newIndex = $scope.gameBoard.indexOf(oldValue);
+
+    return newIndex;
+  }
 });
