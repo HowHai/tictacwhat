@@ -59,10 +59,10 @@ angular.module('tictacwhat', ['ionic'])
       makeNewBoard(newBoard);
       // generateBoard(newBoard);
       $scope.gameBoard = newBoard;
-    }, 10000);
+    }, 3000);
 
     // When game starts, show countdown.
-    $scope.status.message = 10;
+    $scope.status.message = 3;
     runCounter();
   };
 
@@ -119,6 +119,7 @@ angular.module('tictacwhat', ['ionic'])
     return takenUnits.indexOf(getTerritory) != -1 ? true : false;
   };
 
+  // Find original index and push it to array.
   function pushOriginalPosition(player, indexSelected) {
     var oldCell = $scope.gameBoard[indexSelected];
     var originalIndex = originalBoard.indexOf(oldCell);
@@ -222,7 +223,9 @@ angular.module('tictacwhat', ['ionic'])
   function botAI(){
     function pushData(data){
       document.getElementById(data).innerHTML = "<span>O</span>";
-      botMoves.push(data);
+      // botMoves.push(data);
+      // console.log('bot:', data);
+      pushOriginalPosition(botMoves, data);
       gameBoard.push(data);
       displayStatus("France's Turn");
       fatalBlow = [];
@@ -231,8 +234,11 @@ angular.module('tictacwhat', ['ionic'])
     var randMove = [0,2,6,8][Math.floor(Math.random() * [0,2,6,8].length)];
 
     // Take random corner if center is taken on first move
-    if (gameBoard.length == 1)
-      areaTaken(4) ? pushData(randMove) : pushData(4);
+    if (gameBoard.length == 1) {
+      var index = getNewIndex(4);
+      console.log('index:', index);
+      areaTaken(index) ? pushData(randMove) : pushData(index);
+    }
     else if (playerOneMoves.length < 5)
     {
       calculateBotMove(playerOneMoves, botMoves);
@@ -243,6 +249,14 @@ angular.module('tictacwhat', ['ionic'])
         botMoveChecker(winCondition, botMoves, true);
         pushData(fatalBlow);
       }
+    }
+
+    // Get new index using old index.
+    function getNewIndex(oldIndex) {
+      var oldValue = originalBoard[oldIndex];
+      var newIndex = $scope.gameBoard.indexOf(oldValue);
+
+      return newIndex;
     }
   };
 });
