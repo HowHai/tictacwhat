@@ -59,10 +59,10 @@ angular.module('tictacwhat', ['ionic'])
       makeNewBoard(newBoard);
       // generateBoard(newBoard);
       $scope.gameBoard = newBoard;
-    }, 3000);
+    }, 1000);
 
     // When game starts, show countdown.
-    $scope.status.message = 3;
+    $scope.status.message = 1;
     runCounter();
   };
 
@@ -124,7 +124,8 @@ angular.module('tictacwhat', ['ionic'])
     var oldCell = $scope.gameBoard[indexSelected];
     var originalIndex = originalBoard.indexOf(oldCell);
     player.push(originalIndex);
-    console.log('player:', player);
+    console.log('player:', playerOneMoves);
+    console.log('bot:', botMoves);
   }
 
   $scope.selectedTerritory = function(selected){
@@ -185,8 +186,11 @@ angular.module('tictacwhat', ['ionic'])
         return player.indexOf(value) == -1;
       })
 
-      if (winningComb.length == 2 && !areaTaken(winningMove))
+      var winningMoveNewIndex = getNewIndex(winningMove[0]);
+
+      if (winningComb.length == 2 && !areaTaken(winningMoveNewIndex))
       {
+        console.log('190:', winningMove);
         return fatalBlow = winningMove;
         break;
       }
@@ -206,15 +210,21 @@ angular.module('tictacwhat', ['ionic'])
           // Hacky solution to bot's only weakness
           var indexOne = getNewIndex(1);
           var indexEight = getNewIndex(8);
+
           fatalBlow = (areaTaken(indexOne) && areaTaken(indexEight) && gameBoard.length == 5) ? 6 : moveToTake;
+            console.log('winningCom:', winningComb);
+            console.log('211MoveToTake:', moveToTake);
+            console.log('211Fatal:', fatalBlow);
           break;
         }
         else if (areaTaken(winningMoveOne) && areaTaken(winningMoveTwo))
         {
           var indexThree = getNewIndex(3);
           fatalBlow = areaTaken(indexThree) ? 1 : 3
+          console.log('217');
         }
       }
+      console.log('221');
     }
   };
 
@@ -230,6 +240,7 @@ angular.module('tictacwhat', ['ionic'])
   // AI MADNESS
   function botAI(){
     function pushData(data){
+      console.log('data:', data);
       document.getElementById(data).innerHTML = "<span>O</span>";
       pushOriginalPosition(botMoves, data);
       gameBoard.push(data);
@@ -251,14 +262,18 @@ angular.module('tictacwhat', ['ionic'])
       calculateBotMove(playerOneMoves, botMoves);
       if (fatalBlow.length == 1 && !isNaN(fatalBlow))
       {
+        console.log('260fatal:', fatalBlow);
         var index = getNewIndex(fatalBlow[0]);
+        console.log('260index:', fatalBlow);
         pushData(index);
       }
       else
       {
-        var index = getNewIndex(fatalBlow[0]);
-        console.log('fatalBlow:', fatalBlow);
         botMoveChecker(winCondition, botMoves, true);
+        console.log('fatalBlow:', fatalBlow);
+        console.log('268:', fatalBlow);
+        var index = getNewIndex(fatalBlow);
+        console.log('268index:', index);
         pushData(index);
       }
     }
@@ -267,8 +282,11 @@ angular.module('tictacwhat', ['ionic'])
 
   // Get new index using old index.
   function getNewIndex(oldIndex) {
+    console.log('oldIndex:', oldIndex);
     var oldValue = originalBoard[oldIndex];
+    console.log('oldValue:', oldValue);
     var newIndex = $scope.gameBoard.indexOf(oldValue);
+    console.log('newIndex:', newIndex);
 
     return newIndex;
   }
