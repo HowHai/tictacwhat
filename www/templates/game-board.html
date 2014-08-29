@@ -1,0 +1,33 @@
+<ion-view>
+  <div class="bar bar-subheader">
+    <div class="buttons">
+      <button class="button player-avatar">Player 1</button>
+    </div>
+    <h3 class="title">{{ status.message }}</h3>
+    <div class="buttons">
+      <button class="button player-avatar">Player 2</button>
+    </div>
+  </div>
+  <ion-content>
+
+  <div id="innerBoard">
+      <div class    ="diamond"
+           id       ="{{$index}}"
+           ng-repeat="territory in gameBoard"
+           ng-click ="selectedTerritory($index)">
+        {{ territory }}
+      </div>
+  </div>
+  <!-- Footer -->
+  </ion-content>
+
+  <ion-footer-bar align-title="center" class="bar-assertive">
+    <div class="buttons">
+      <button class="button" ng-click="botMode()">Play</button>
+    </div>
+    <h1 class="title"></h1>
+    <div class="buttons" ng-click="doSomething()">
+      <button class="button">Quit</button>
+    </div>
+  </ion-footer-bar>
+</ion-view>
