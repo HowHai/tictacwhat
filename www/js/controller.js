@@ -1,9 +1,38 @@
 var app = angular.module('tictacwhat.controllers', []);
 
-app.controller('MainCtrl', function($scope, $timeout) {
+app.controller('MainCtrl', function($scope, $timeout, $ionicPopup) {
   Array.prototype.last = function(){
     return this[this.length -1];
   }
+
+  $scope.showPopup = function() {
+    $scope.data = {}
+
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      templateUrl: 'templates/game-over-modal.html',
+      title: 'Game Over',
+      scope: $scope,
+      buttons: [
+        { text: 'Cancel' },
+        {
+          text: '<b>Save</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            if (!$scope.data.wifi) {
+              //don't allow the user to close unless he enters wifi password
+              e.preventDefault();
+            } else {
+              return $scope.data.wifi;
+            }
+          }
+        },
+      ]
+    });
+    myPopup.then(function(res) {
+      console.log('Tapped!', res);
+    });
+   };
 
   var getInnerText = function(id) {
     return document.getElementById(id).innerText;
@@ -147,6 +176,7 @@ app.controller('MainCtrl', function($scope, $timeout) {
         {
           displayStatus(message);
           gameOver = true;
+          $scope.showPopup();
           break;
         }
     }
