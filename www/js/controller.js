@@ -1,15 +1,15 @@
 var app = angular.module('tictacwhat.controllers', []);
 
-app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $state) {
+app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $state, ScoreSystem) {
   Array.prototype.last = function(){
     return this[this.length -1];
   }
 
-  // Firebase data storage.
-  var fireBase = new Firebase("https://tic-tac-what.firebaseio.com");
-
+  // Get current user's data.
   $scope.currentUser = {};
   $scope.currentUser.username = $window.localStorage.getItem('username');
+  $scope.currentUser.topScore = $window.localStorage.getItem('topScore');
+  $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore');
 
   $scope.showPopup = function(popupTitle, status) {
     $scope.data = {};
@@ -30,11 +30,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             // Save username to localStorage.
             $window.localStorage.setItem('username', $scope.currentUser.username);
 
-            // Submit score to firebase.
-            fireBase.set({
-              username: $scope.currentUser.username,
-              score: 190
-            });
+            ScoreSystem.submitScore($scope.currentUser.username);
           }
         },
       ]
