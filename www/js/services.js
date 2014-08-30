@@ -16,56 +16,69 @@ app.factory('ScoreSystem', function($window) {
 
     updateCurrentScore: function(mode, playerMoves) {
       // Get value based on game mode.
-      var modeValue = switch(mode) {
-        case 'easy':
-          return 1;
-          break;
-        case 'normal':
-          return 3;
-          break;
-        canse 'hard':
-          return 10;
-          break;
+      function modeCalculation(mode) {
+        switch(mode) {
+          case 'easy':
+            return 1;
+            break;
+          case 'normal':
+            return 3;
+            break;
+          case 'hard':
+            return 10;
+            break;
+          default:
+            break;
+        }
       }
+      var modeValue = modeCalculation(mode);
+
 
       // Get point per move based on moves taken already.
       var playerMovesCount = playerMoves.length;
-      var movePoint = switch(playerMovesCount) {
-        case 1:
-          return 1;
-          break;
-        case 2:
-          return 1;
-          break;
-        case 3:
-          return 1;
-          break;
-        case 4:
-          return 5;
-          break;
-        case 5:
-          return 15;
-          break;
+
+      function movePointCalculation(playerMovesCount) {
+        switch(playerMovesCount) {
+          case 1:
+            return 1;
+            break;
+          case 2:
+            return 1;
+            break;
+          case 3:
+            return 1;
+            break;
+          case 4:
+            return 5;
+            break;
+          case 5:
+            return 15;
+            break;
+        }
       }
+      var modePoint = movePointCalculation(playerMovesCount);
 
       // Calculate point.
-      var point = switch(movePoint) {
-        case 1:
-          return 1
-          break;
-        case 2:
-          return 1;
-          break;
-        case 3:
-          return 1;
-          break;
-        case 4:
-          return movePoint * modelValue;
-          break;
-        case 5:
-          return movePoint * modelValue;
-          break;
+      function calculatePoint(movePoint) {
+        switch(movePoint) {
+          case 1:
+            return 1
+            break;
+          case 2:
+            return 1;
+            break;
+          case 3:
+            return 1;
+            break;
+          case 4:
+            return movePoint * modelValue;
+            break;
+          case 5:
+            return movePoint * modelValue;
+            break;
+        }
       }
+      var point = calculatePoint(movePoint);
 
       // Get user's current game score.
       var currentScore = $window.localStorage.getItem('currentScore');

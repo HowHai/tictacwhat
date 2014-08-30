@@ -141,6 +141,10 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     player.push(originalIndex);
     console.log('player:', playerOneMoves);
     console.log('bot:', botMoves);
+
+    // Set current score.
+    // ScoreSystem.updateCurrentScore
+
   }
 
   $scope.selectedTerritory = function(selected){
