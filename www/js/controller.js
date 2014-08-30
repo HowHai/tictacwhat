@@ -1,36 +1,43 @@
 var app = angular.module('tictacwhat.controllers', []);
 
-app.controller('MainCtrl', function($scope, $timeout, $ionicPopup) {
+app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $state) {
   Array.prototype.last = function(){
     return this[this.length -1];
   }
 
-  $scope.showPopup = function() {
-    $scope.data = {}
+  // Firebase data storage.
+  var fireBase = new Firebase("https://tic-tac-what.firebaseio.com");
 
-    // An elaborate, custom popup
+  $scope.currentUser = {};
+  $scope.currentUser.username = $window.localStorage.getItem('username');
+
+  $scope.showPopup = function(popupTitle, status) {
+    $scope.data = {};
+
+    $scope.data.title = popupTitle;
+    $scope.data.gameStatus = status;
+
     var myPopup = $ionicPopup.show({
       templateUrl: 'templates/game-over-modal.html',
       title: 'Game Over',
+      subTitle: 'Enter your name and submit your score!',
       scope: $scope,
       buttons: [
-        { text: 'Cancel' },
         {
-          text: '<b>Save</b>',
+          text: '<b>Submit Score</b>',
           type: 'button-positive',
           onTap: function(e) {
-            if (!$scope.data.wifi) {
-              //don't allow the user to close unless he enters wifi password
-              e.preventDefault();
-            } else {
-              return $scope.data.wifi;
-            }
+            // Save username to localStorage.
+            $window.localStorage.setItem('username', $scope.currentUser.username);
+
+            // Submit score to firebase.
+            fireBase.set({
+              username: $scope.currentUser.username,
+              score: 190
+            });
           }
         },
       ]
-    });
-    myPopup.then(function(res) {
-      console.log('Tapped!', res);
     });
    };
 
