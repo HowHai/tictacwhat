@@ -1,15 +1,18 @@
 var app = angular.module('tictacwhat.controllers', []);
 
-app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $state, ScoreSystem) {
+app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $state, ScoreSystem, $stateParams) {
   Array.prototype.last = function(){
     return this[this.length -1];
   }
 
-  // Get current user's data.
+  // game data
+  $scope.gameStatus = {};
   $scope.currentUser = {};
   $scope.currentUser.username = $window.localStorage.getItem('username');
   $scope.currentUser.topScore = $window.localStorage.getItem('topScore');
   $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore');
+
+  $scope.gameStatus.mode = $stateParams.mode;
 
   $scope.showPopup = function(popupTitle, status) {
     $scope.data = {};
@@ -143,8 +146,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     console.log('bot:', botMoves);
 
     // Set current score.
-    // ScoreSystem.updateCurrentScore
-
+    ScoreSystem.updateCurrentScore($scope.gameStatus.mode, player);
   }
 
   $scope.selectedTerritory = function(selected){

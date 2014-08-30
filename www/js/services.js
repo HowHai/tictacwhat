@@ -56,7 +56,7 @@ app.factory('ScoreSystem', function($window) {
             break;
         }
       }
-      var modePoint = movePointCalculation(playerMovesCount);
+      var movePoint = movePointCalculation(playerMovesCount);
 
       // Calculate point.
       function calculatePoint(movePoint) {
@@ -71,10 +71,10 @@ app.factory('ScoreSystem', function($window) {
             return 1;
             break;
           case 4:
-            return movePoint * modelValue;
+            return movePoint * modeValue;
             break;
           case 5:
-            return movePoint * modelValue;
+            return movePoint * modeValue;
             break;
         }
       }
@@ -84,7 +84,7 @@ app.factory('ScoreSystem', function($window) {
       var currentScore = $window.localStorage.getItem('currentScore');
 
       // Set user's current game score.
-      var totalPoints = currentScore ? currentScore + point : 0 + point;
+      var totalPoints = currentScore ? +currentScore + point : 0 + point;
       $window.localStorage.setItem('currentScore', totalPoints);
     }
   };
