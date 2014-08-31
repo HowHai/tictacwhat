@@ -19,6 +19,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 
     $scope.data.title = popupTitle;
     $scope.data.gameStatus = status;
+    $scope.data.gameScore = $window.localStorage.getItem('currentScore');
 
     var myPopup = $ionicPopup.show({
       templateUrl: 'templates/game-over-modal.html',
@@ -33,7 +34,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             // Save username to localStorage.
             $window.localStorage.setItem('username', $scope.currentUser.username);
 
-            ScoreSystem.submitScore($scope.currentUser.username);
+            ScoreSystem.submitScore($scope.currentUser.username, $scope.data.gameScore);
           }
         },
       ]
@@ -183,9 +184,12 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 
       if (winComb.length == 3)
         {
+          // Reset user's current score.
+          $scope.showPopup();
+          ScoreSystem.resetCurrentScore();
+
           displayStatus(message);
           gameOver = true;
-          $scope.showPopup();
           break;
         }
     }

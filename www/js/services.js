@@ -3,17 +3,19 @@ var app = angular.module('tictacwhat.services', []);
 app.factory('ScoreSystem', function($window) {
   // Firebase data storage.
   var fireBase = new Firebase("https://tic-tac-what.firebaseio.com");
+  var newScorer = fireBase.child('users');
 
   var ScoreSystem = {
     submitScore: function(username, score) {
 
     // Submit score to firebase.
-    fireBase.set({
+    newScorer.push({
       username: username,
-      score: 190
+      score: score
     });
-    },
+  },
 
+    // Calculate and update score.
     updateCurrentScore: function(mode, playerMoves) {
       // Get value based on game mode.
       function modeCalculation(mode) {
@@ -86,8 +88,14 @@ app.factory('ScoreSystem', function($window) {
       // Set user's current game score.
       var totalPoints = currentScore ? +currentScore + point : 0 + point;
       $window.localStorage.setItem('currentScore', totalPoints);
+    },
+
+    // Reset score when user loses.
+    resetCurrentScore: function() {
+      $window.localStorage.removeItem('currentScore');
     }
   };
+
 
   return ScoreSystem;
 });
