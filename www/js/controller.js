@@ -8,6 +8,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   // game data
   $scope.gameStatus = {};
   $scope.currentUser = {};
+  $scope.gamePopup = {};
   $scope.currentUser.username = $window.localStorage.getItem('username');
   $scope.currentUser.topScore = $window.localStorage.getItem('topScore');
   $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore');
@@ -21,7 +22,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     $scope.data.gameStatus = status;
     $scope.data.gameScore = $window.localStorage.getItem('currentScore');
 
-    var myPopup = $ionicPopup.show({
+    $scope.gamePopup.over = $ionicPopup.show({
       templateUrl: 'templates/game-over-modal.html',
       scope: $scope
     });
@@ -29,7 +30,6 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 
   // Submit score
   $scope.submitScore = function() {
-    console.log('ran');
     // Save username to localStorage.
     $window.localStorage.setItem('username', $scope.currentUser.username);
 
@@ -57,7 +57,6 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   var randomBoard = [];
   $scope.status.message = "Click play to start";
 
-  // $scope.gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   $scope.gameBoard = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
 
   var winCondition = [
@@ -65,6 +64,13 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
                           [0,3,6], [1,4,7], [2,5,8],
                           [0,4,8], [2,4,6]
                      ];
+
+  // Restart game.
+  $scope.restartGame = function() {
+    $state.go($state.current, {}, {reload: true});
+
+    $scope.gamePopup.over.close();
+  }
 
   $scope.botMode = function(){
     gameOver = false;
