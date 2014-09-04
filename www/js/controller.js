@@ -9,21 +9,29 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   $scope.gameStatus = {};
   $scope.currentUser = {};
   $scope.gamePopup = {};
+  $scope.showPopup = {};
   $scope.currentUser.username = $window.localStorage.getItem('username');
   $scope.currentUser.topScore = $window.localStorage.getItem('topScore');
   $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore');
 
   $scope.gameStatus.mode = $stateParams.mode;
 
-  $scope.showPopup = function(popupTitle, status) {
+  $scope.showPopup.over = function() {
     $scope.data = {};
-
-    $scope.data.title = popupTitle;
-    $scope.data.gameStatus = status;
     $scope.data.gameScore = $window.localStorage.getItem('currentScore');
 
     $scope.gamePopup.over = $ionicPopup.show({
       templateUrl: 'templates/game-over-modal.html',
+      scope: $scope
+    });
+  };
+
+  $scope.showPopup.draw = function() {
+    $scope.data = {};
+    $scope.data.gameScore = $window.localStorage.getItem('currentScore');
+
+    $scope.gamePopup.draw = $ionicPopup.show({
+      templateUrl: 'templates/game-draw-modal.html',
       scope: $scope
     });
   };
@@ -66,10 +74,14 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
                      ];
 
   // Restart game.
-  $scope.restartGame = function() {
-    $state.go($state.current, {}, {reload: true});
+  $scope.restartGame = function(gameStatus) {
+    if (gameStatus == 'over') {
+      $scope.gamePopup.over.close();
+    } else {
+      $scope.gamePopup.draw.close();
+    }
 
-    $scope.gamePopup.over.close();
+    $state.go($state.current, {}, {reload: true});
   }
 
   $scope.botMode = function(){
@@ -188,7 +200,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       if (winComb.length == 3)
         {
           // Reset user's current score.
-          $scope.showPopup();
+          $scope.showPopup.over();
           ScoreSystem.resetCurrentScore();
 
           displayStatus(message);
@@ -198,7 +210,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     }
     if (playerMoves.length == 5 && gameOver == false)
     {
-      displayStatus("War is hell... stalemate!");
+      // Continue playing.
+      $scope.showPopup.draw();
+      console.log('draw');
       gameOver = true;
     }
   };
