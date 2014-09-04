@@ -31,10 +31,14 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           text: '<b>Submit Score</b>',
           type: 'button-positive',
           onTap: function(e) {
+            e.preventDefault();
+
             // Save username to localStorage.
             $window.localStorage.setItem('username', $scope.currentUser.username);
 
             ScoreSystem.submitScore($scope.currentUser.username, $scope.data.gameScore);
+
+            $scope.gameStatus.message = 'Score submitted!';
           }
         },
       ]
@@ -55,7 +59,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   var newBoard = [];
   var botMoves = [];
   var fatalBlow = [];
-  var gameOver = false;
+  var gameOver = true;
   var botMode = true;
   var randomBoard = [];
   $scope.status.message = "Click play to start";

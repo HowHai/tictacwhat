@@ -93,6 +93,21 @@ app.factory('ScoreSystem', function($window) {
     // Reset score when user loses.
     resetCurrentScore: function() {
       $window.localStorage.removeItem('currentScore');
+    },
+
+    // Get all users.
+    getAllScores: function() {
+      var fireBaseUsers = new Firebase("https://tic-tac-what.firebaseio.com/users");
+
+      var allUsers = {};
+
+      fireBaseUsers.on('value', function (snapshot) {
+        allUsers = snapshot.val();
+      }, function (errorObject) {
+        console.log('The read failed: ' + errorObject.code);
+      });
+
+      return allUsers;
     }
   };
 

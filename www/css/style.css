@@ -68,3 +68,9 @@ body {
   list-style: decimal;
   margin: 10px 0px;
 }
+
+.score-submitted {
+  text-align: center;
+  color: green;
+  font-weight: bold;
+}
