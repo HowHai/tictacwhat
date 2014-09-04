@@ -35,6 +35,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/tutorial.html',
     controller:  'TutorialCtrl'
   })
+  .state('score', {
+    url: '/score',
+    templateUrl: 'templates/score.html',
+    controller:  'ScoreCtrl'
+  })
 
   $urlRouterProvider.otherwise('/menu');
 });

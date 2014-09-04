@@ -338,3 +338,18 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 app.controller('TutorialCtrl', function($scope) {
 
 });
+
+
+app.controller('ScoreCtrl', function($scope) {
+  var fireBaseUsers = new Firebase("https://tic-tac-what.firebaseio.com/users");
+
+  $scope.scoreBoard = {};
+
+  fireBaseUsers.once('value', function (snapshot) {
+    $scope.$apply(function() {
+      $scope.scoreBoard.allScores = snapshot.val();
+    });
+  }, function (errorObject) {
+    console.log('The read failed: ' + errorObject.code);
+  });
+});

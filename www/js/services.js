@@ -103,13 +103,12 @@ app.factory('ScoreSystem', function($window) {
 
       var allUsers = {};
 
-      fireBaseUsers.on('value', function (snapshot) {
+      fireBaseUsers.once('value', function (snapshot) {
         allUsers = snapshot.val();
+        console.log(allUsers);
       }, function (errorObject) {
         console.log('The read failed: ' + errorObject.code);
       });
-
-      return allUsers;
     }
   };
 
