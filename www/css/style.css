@@ -73,4 +73,9 @@ body {
   text-align: center;
   color: green;
   font-weight: bold;
+  margin: 0 5px;
+}
+
+#game-over-box {
+  text-align: center;
 }

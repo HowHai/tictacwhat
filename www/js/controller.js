@@ -23,27 +23,20 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 
     var myPopup = $ionicPopup.show({
       templateUrl: 'templates/game-over-modal.html',
-      title: 'Game Over',
-      subTitle: 'Enter your name and submit your score!',
-      scope: $scope,
-      buttons: [
-        {
-          text: '<b>Submit Score</b>',
-          type: 'button-positive',
-          onTap: function(e) {
-            e.preventDefault();
-
-            // Save username to localStorage.
-            $window.localStorage.setItem('username', $scope.currentUser.username);
-
-            ScoreSystem.submitScore($scope.currentUser.username, $scope.data.gameScore);
-
-            $scope.gameStatus.message = 'Score submitted!';
-          }
-        },
-      ]
+      scope: $scope
     });
-   };
+  };
+
+  // Submit score
+  $scope.submitScore = function() {
+    console.log('ran');
+    // Save username to localStorage.
+    $window.localStorage.setItem('username', $scope.currentUser.username);
+
+    ScoreSystem.submitScore($scope.currentUser.username, $scope.data.gameScore);
+
+    $scope.gameStatus.message = 'Score submitted!';
+  }
 
   var getInnerText = function(id) {
     return document.getElementById(id).innerText;
