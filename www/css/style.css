@@ -79,3 +79,11 @@ body {
 #game-over-box {
   text-align: center;
 }
+
+.title {
+  text-align: center;
+}
+
+#game-score-box {
+  text-align: center;
+}

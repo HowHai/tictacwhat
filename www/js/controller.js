@@ -12,7 +12,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   $scope.showPopup = {};
   $scope.currentUser.username = $window.localStorage.getItem('username');
   $scope.currentUser.topScore = $window.localStorage.getItem('topScore');
-  $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore');
+  $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore') || 0;
 
   $scope.gameStatus.mode = $stateParams.mode;
 
@@ -162,7 +162,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     console.log('bot:', botMoves);
 
     // Set current score.
-    ScoreSystem.updateCurrentScore($scope.gameStatus.mode, player);
+    $scope.currentUser.currentScore = ScoreSystem.updateCurrentScore($scope.gameStatus.mode, player);
   }
 
   $scope.selectedTerritory = function(selected){

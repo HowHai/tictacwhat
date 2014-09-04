@@ -88,6 +88,8 @@ app.factory('ScoreSystem', function($window) {
       // Set user's current game score.
       var totalPoints = currentScore ? +currentScore + point : 0 + point;
       $window.localStorage.setItem('currentScore', totalPoints);
+
+      return totalPoints;
     },
 
     // Reset score when user loses.
