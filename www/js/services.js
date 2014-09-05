@@ -7,6 +7,8 @@ app.factory('ScoreSystem', function($window) {
 
   var ScoreSystem = {
     submitScore: function(username, score) {
+    // Change score to int.
+    score = parseInt(score);
 
     // Submit score to firebase.
     newScorer.push({

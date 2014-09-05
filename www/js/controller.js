@@ -348,6 +348,7 @@ app.controller('ScoreCtrl', function($scope) {
   fireBaseUsers.once('value', function (snapshot) {
     $scope.$apply(function() {
       $scope.scoreBoard.allScores = snapshot.val();
+      console.log(snapshot.val());
     });
   }, function (errorObject) {
     console.log('The read failed: ' + errorObject.code);
