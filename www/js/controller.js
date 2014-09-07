@@ -13,8 +13,15 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   $scope.currentUser.username = $window.localStorage.getItem('username');
   $scope.currentUser.topScore = $window.localStorage.getItem('topScore');
   $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore') || 0;
-
   $scope.gameStatus.mode = $stateParams.mode;
+
+  // Check game mode.
+  $scope.checkGameMode = function(territory) {
+    if ($scope.gameStatus.mode == 'easy') {
+      return territory;
+    }
+  }
+
 
   $scope.showPopup.over = function() {
     $scope.data = {};
@@ -332,6 +339,121 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     console.log('newIndex:', newIndex);
 
     return newIndex;
+  }
+
+
+  $scope.generateColor = function(cell)
+  {
+    var gameMode = $scope.gameStatus.mode;
+
+    switch(cell)
+    {
+      case 'A':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#1abc9c';
+            break;
+        }
+        break;
+      case 'B':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#2980b9';
+            break;
+        }
+        break;
+      case 'C':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#9b59b6';
+            break;
+        }
+        break;
+      case 'D':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#2c3e50';
+            break;
+        }
+        break;
+      case 'E':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#f1c40f';
+            break;
+        }
+        break;
+      case 'F':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#c0392b';
+            break;
+        }
+        break;
+      case 'G':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#95a5a6';
+            break;
+        }
+        break;
+      case 'H':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#ecf0f1';
+            break;
+        }
+        break;
+      case 'I':
+        switch(gameMode)
+        {
+          case 'easy':
+            return '#3498db';
+            break;
+          case 'normal':
+            return '#27ae60';
+            break;
+        }
+        break;
+      case 'X':
+        return '#505050';
+        break;
+      case 'O':
+        return '#009966';
+        break;
+    }
   }
 });
 
