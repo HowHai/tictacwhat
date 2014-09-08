@@ -1,11 +1,18 @@
 <ion-view>
-  <h1 class="title">Score</h1>
-  <div id="game-score-box">
-    {{ currentUser.currentScore }}
-  </div>
 
-  <div id="count-down-box">
-    {{ status.message }}
+  <div id="game-status-box">
+    <div id="score-box">
+      <h2 class="title">Score</h2>
+      <div id="current-score">
+        {{ currentUser.currentScore }}
+      </div>
+    </div>
+    <div id="timer-box">
+      <h2 class="title">Time</h2>
+      <div id="current-timer">
+        {{ currentUser.currentScore }}
+      </div>
+    </div>
   </div>
 
   <div id="innerBoard">
@@ -19,13 +26,15 @@
   </div>
   <!-- Footer -->
 
-  <ion-footer-bar align-title="center" class="bar-assertive">
-    <div class="buttons">
-      <button class="button" ng-click="botMode()">Play</button>
+  <div id="game-actions-box">
+    <div class="game-actions-button" ng-click="botMode()">
+      Play
     </div>
-    <h1 class="title"></h1>
-    <div class="buttons" ng-click="showPopup.draw()">
-      <button class="button">Quit</button>
+    <div class="game-actions-button" ng-click="botMode()">
+      Restart
     </div>
-  </ion-footer-bar>
+    <div class="game-actions-button" href="#/menu">
+      Menu
+    </div>
+  </div>
 </ion-view>

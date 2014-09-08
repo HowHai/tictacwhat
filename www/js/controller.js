@@ -343,7 +343,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#FFECDB';
@@ -357,7 +357,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#2980b9';
@@ -371,7 +371,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#DCC6E0';
@@ -385,7 +385,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#2c3e50';
@@ -399,7 +399,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#f1c40f';
@@ -413,7 +413,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#F9690E';
@@ -427,7 +427,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#95a5a6';
@@ -441,7 +441,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#ecf0f1';
@@ -455,7 +455,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
         switch(gameMode)
         {
           case 'easy':
-            return '#3498db';
+            return '#E67E22';
             break;
           case 'normal':
             return '#674172';

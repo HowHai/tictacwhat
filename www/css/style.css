@@ -20,13 +20,16 @@
   display: inline-block;
   width: 80px;
   height: 80px;
-  border: 1px solid black;
+  border: 1px solid #2574A9;
   cursor: pointer;
 
   text-align: center;
-  font-size: 20px;
+  font-size: 40px;
   color: rgba(0, 0, 0, 0.0);
   background-color: #3498db;
+  border-radius: 5px;
+  font-weight: bold;
+  line-height: 75px;
 }
 
 .player-avatar {
@@ -84,6 +87,72 @@ body {
   text-align: center;
 }
 
-#game-score-box {
+#game-status-box {
+  margin: 20px;
+  font-size: 2.2em;
+  margin-top: 75px;
+}
+
+#game-status-box h2 {
+  color: white;
+}
+
+#score-box {
   text-align: center;
+  display: inline-block;
+  margin: 0 20px;
+}
+
+#current-score {
+  color: #E67E22;
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  padding: 10px;
+  background: #F2F1EF;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+#timer-box {
+  text-align: center;
+  display: inline-block;
+}
+
+#current-timer {
+  color: #E67E22;
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  padding: 10px;
+  background: #F2F1EF;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+.pane {
+  background: #2574A9;
+}
+
+#game-actions-box {
+  margin-left: 5px;
+}
+
+#game-actions-box div {
+  display: inline-block;
+}
+
+.game-actions-button {
+  color: #E67E22;
+  text-align: center;
+  border: 1px solid grey;
+  border-radius: 3px;
+  height: 30px;
+  width: 100px;
+  padding: 10px;
+  background: #F2F1EF;
+  font-weight: bold;
+  line-height: 10px;
 }
