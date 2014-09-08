@@ -18,7 +18,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   // Check game mode.
   $scope.checkGameMode = function(territory) {
     if ($scope.gameStatus.mode == 'easy') {
-      return territory;
+      return 'white';
     }
   }
 
@@ -165,15 +165,12 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     var oldCell = $scope.gameBoard[indexSelected];
     var originalIndex = originalBoard.indexOf(oldCell);
     player.push(originalIndex);
-    console.log('player:', playerOneMoves);
-    console.log('bot:', botMoves);
 
     // Set current score.
     $scope.currentUser.currentScore = ScoreSystem.updateCurrentScore($scope.gameStatus.mode, player);
   }
 
   $scope.selectedTerritory = function(selected){
-    console.log('selected:', selected);
     var getDiv = document.getElementById(selected);
     var taken = areaTaken(selected);
     var XorO = gameBoard.length % 2 == 0 ? "X" : "O";
@@ -219,7 +216,6 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     {
       // Continue playing.
       $scope.showPopup.draw();
-      console.log('draw');
       gameOver = true;
     }
   };
@@ -240,7 +236,6 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 
       if (winningComb.length == 2 && !areaTaken(winningMoveNewIndex))
       {
-        console.log('190:', winningMove);
         return fatalBlow = winningMove;
         break;
       }
@@ -262,19 +257,14 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           var indexEight = getNewIndex(8);
 
           fatalBlow = (areaTaken(indexOne) && areaTaken(indexEight) && gameBoard.length == 5) ? 6 : moveToTake;
-            console.log('winningCom:', winningComb);
-            console.log('211MoveToTake:', moveToTake);
-            console.log('211Fatal:', fatalBlow);
           break;
         }
         else if (areaTaken(winningMoveOne) && areaTaken(winningMoveTwo))
         {
           var indexThree = getNewIndex(3);
           fatalBlow = areaTaken(indexThree) ? 1 : 3
-          console.log('217');
         }
       }
-      console.log('221');
     }
   };
 
@@ -312,18 +302,13 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       calculateBotMove(playerOneMoves, botMoves);
       if (fatalBlow.length == 1 && !isNaN(fatalBlow))
       {
-        console.log('260fatal:', fatalBlow);
         var index = getNewIndex(fatalBlow[0]);
-        console.log('260index:', fatalBlow);
         pushData(index);
       }
       else
       {
         botMoveChecker(winCondition, botMoves, true);
-        console.log('fatalBlow:', fatalBlow);
-        console.log('268:', fatalBlow);
         var index = getNewIndex(fatalBlow);
-        console.log('268index:', index);
         pushData(index);
       }
     }
@@ -332,11 +317,8 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 
   // Get new index using old index.
   function getNewIndex(oldIndex) {
-    console.log('oldIndex:', oldIndex);
     var oldValue = originalBoard[oldIndex];
-    console.log('oldValue:', oldValue);
     var newIndex = $scope.gameBoard.indexOf(oldValue);
-    console.log('newIndex:', newIndex);
 
     return newIndex;
   }
@@ -345,6 +327,15 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   $scope.generateColor = function(cell)
   {
     var gameMode = $scope.gameStatus.mode;
+    var takenArea = $scope.gameBoard.indexOf(cell);
+    var takenTerritory = getInnerText(takenArea);
+
+    // Reassigns for taken area.
+    if (takenTerritory == 'X') {
+      return 'green';
+    } else if (takenTerritory =='O') {
+      return 'red';
+    }
 
     switch(cell)
     {

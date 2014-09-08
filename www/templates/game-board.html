@@ -11,10 +11,10 @@
   <div id="innerBoard">
       <div class    ="diamond"
            id       ="{{$index}}"
-           ng-repeat="territory in gameBoard"
+           ng-repeat="territory in gameBoard track by $index"
            ng-click ="selectedTerritory($index)"
-           ng-style ="{background: generateColor(territory)}">
-        {{ checkGameMode(territory) }}
+           ng-style ="{background: generateColor(territory), color: checkGameMode()}">
+        {{ territory }}
       </div>
   </div>
   <!-- Footer -->
