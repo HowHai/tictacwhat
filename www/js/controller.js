@@ -348,6 +348,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           case 'normal':
             return '#FFECDB';
             break;
+          case 'hard':
+            return '#6C7A89';
+            break;
         }
         break;
       case 'B':
@@ -358,6 +361,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             break;
           case 'normal':
             return '#2980b9';
+            break;
+          case 'hard':
+            return '#D2D7D3';
             break;
         }
         break;
@@ -370,6 +376,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           case 'normal':
             return '#DCC6E0';
             break;
+          case 'hard':
+            return '#EEEEEE';
+            break;
         }
         break;
       case 'D':
@@ -380,6 +389,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             break;
           case 'normal':
             return '#2c3e50';
+            break;
+          case 'hard':
+            return '#BDC3C7';
             break;
         }
         break;
@@ -392,6 +404,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           case 'normal':
             return '#f1c40f';
             break;
+          case 'hard':
+            return '#95A5A6';
+            break;
         }
         break;
       case 'F':
@@ -402,6 +417,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             break;
           case 'normal':
             return '#F9690E';
+            break;
+          case 'hard':
+            return '#DADFE1';
             break;
         }
         break;
@@ -414,6 +432,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           case 'normal':
             return '#95a5a6';
             break;
+          case 'hard':
+            return '#ABB7B7';
+            break;
         }
         break;
       case 'H':
@@ -424,6 +445,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             break;
           case 'normal':
             return '#ecf0f1';
+            break;
+          case 'hard':
+            return '#F2F1EF';
             break;
         }
         break;
@@ -436,13 +460,10 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           case 'normal':
             return '#674172';
             break;
+          case 'hard':
+            return '#BFBFBF';
+            break;
         }
-        break;
-      case 'X':
-        return '#505050';
-        break;
-      case 'O':
-        return '#009966';
         break;
     }
   }
