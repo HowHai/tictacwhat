@@ -346,7 +346,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             return '#3498db';
             break;
           case 'normal':
-            return '#1abc9c';
+            return '#FFECDB';
             break;
         }
         break;
@@ -368,7 +368,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             return '#3498db';
             break;
           case 'normal':
-            return '#9b59b6';
+            return '#DCC6E0';
             break;
         }
         break;
@@ -401,7 +401,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             return '#3498db';
             break;
           case 'normal':
-            return '#c0392b';
+            return '#F9690E';
             break;
         }
         break;
@@ -434,7 +434,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
             return '#3498db';
             break;
           case 'normal':
-            return '#27ae60';
+            return '#674172';
             break;
         }
         break;
