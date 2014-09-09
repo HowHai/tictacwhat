@@ -14,6 +14,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   $scope.currentUser.topScore = $window.localStorage.getItem('topScore');
   $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore') || 0;
   $scope.gameStatus.mode = $stateParams.mode;
+  // $scope.gameStatus.message = 'Click Play to start';
 
   // Check game mode.
   $scope.checkGameMode = function(territory) {
@@ -105,7 +106,6 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   $scope.botMode = function(){
     gameOver = false;
     botMode = true;
-    displayStatus("France's Turn");
 
     $timeout(function(){
       makeNewBoard(newBoard);
@@ -196,15 +196,15 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 
     if (XorO == 'X' && !taken && !gameOver)
     {
-      playerAction(playerOneMoves, "Holland's Turn");
+      playerAction(playerOneMoves, "0");
       if (botMode)
       {
         botAI();
       }
     }
 
-    winCheck(winCondition, playerOneMoves, "France won!");
-    winCheck(winCondition, botMoves, "Holland won!");
+    winCheck(winCondition, playerOneMoves, "0");
+    winCheck(winCondition, botMoves, "0");
   };
 
   function winCheck(winCondition, playerMoves, message) {
@@ -296,7 +296,6 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       document.getElementById(data).innerHTML = "<span>O</span>";
       pushOriginalPosition(botMoves, data);
       gameBoard.push(data);
-      displayStatus("France's Turn");
       fatalBlow = [];
     }
 

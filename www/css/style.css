@@ -212,3 +212,7 @@ h1 {
   font-size: 1.2em;
   background: white;
 }
+
+.game-message-box {
+  color: #E67E22;
+}
