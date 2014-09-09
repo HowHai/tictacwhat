@@ -207,6 +207,8 @@ h1 {
 }
 
 .score-rows {
-  color: white;
+  color: #E67E22;
   text-align: center;
+  font-size: 1.2em;
+  background: white;
 }

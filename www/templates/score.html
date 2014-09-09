@@ -8,11 +8,19 @@
       <div class="col col-25"><b>User</b></div>
     </div>
 
-
-    <div class="row score-rows" ng-repeat="user in scoreBoard.allScores | toArray | orderBy:'score':true">
-      <div class="col col-25 col-offset-10">{{ $index + 1}}</div>
+    <div class="row score-rows" ng-repeat="user in scoreBoard.allScores | toArray | orderBy:'score':true | limitTo: 10">
+      <div class="col col-25 col-offset-10">#{{ $index + 1}}</div>
       <div class="col col-25">{{ user.score }}</div>
       <div class="col col-25">{{ user.username }}</div>
     </div>
+
+    <br>
+    <center>
+    <div>
+      <a class="button menu-buttons" href="#/menu">
+       Menu
+      </a>
+    </div>
+    </center>
   </ion-content>
 </ion-view>
