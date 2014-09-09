@@ -43,6 +43,13 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     });
   };
 
+  $scope.showPopup.start = function() {
+
+    $scope.gamePopup.start = $ionicPopup.show({
+      templateUrl: 'templates/start-popup.html',
+    });
+  };
+
   // Submit score
   $scope.submitScore = function() {
     // Save username to localStorage.
@@ -74,7 +81,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   var gameOver = true;
   var botMode = true;
   var randomBoard = [];
-  $scope.status.message = "Click play to start";
+  $scope.status.message = "0";
 
   $scope.gameBoard = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
 
@@ -104,10 +111,10 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       makeNewBoard(newBoard);
       // generateBoard(newBoard);
       $scope.gameBoard = newBoard;
-    }, 1000);
+    }, 5000);
 
     // When game starts, show countdown.
-    $scope.status.message = 1;
+    $scope.status.message = 5;
     runCounter();
   };
 
@@ -119,10 +126,11 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
 
     if ($scope.status.message == 0)
     {
-      $scope.status.message = "Start!";
+      $scope.showPopup.start();
       $timeout(function() {
-        $scope.status.message = null;
-      }, 1500);
+        $scope.gamePopup.start.close();
+        $scope.status.message = 0;
+      }, 1000);
     }
   }
 
