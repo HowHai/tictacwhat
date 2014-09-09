@@ -100,7 +100,7 @@ body {
 #score-box {
   text-align: center;
   display: inline-block;
-  margin: 0 20px;
+  margin: 0 40px;
 }
 
 #current-score {
@@ -137,7 +137,7 @@ body {
 }
 
 #game-actions-box {
-  margin-left: 5px;
+  margin-left: 25px;
 }
 
 #game-actions-box div {

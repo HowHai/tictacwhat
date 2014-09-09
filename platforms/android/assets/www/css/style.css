@@ -1,1 +1,158 @@
-/* Empty. Add your own CSS if you like */
+#gameBoard {
+  border: 10px solid black;
+  width: 300px;
+  height: 300px;
+}
+
+.clear {
+  clear: both;
+  border: 2px solid black;
+}
+
+#innerBoard {
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
+}
+
+.diamond {
+  margin: 9px;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #2574A9;
+  cursor: pointer;
+
+  text-align: center;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.0);
+  background-color: #3498db;
+  border-radius: 5px;
+  font-weight: bold;
+  line-height: 75px;
+}
+
+.player-avatar {
+  width: 70px;
+  height: 70px;
+}
+
+// Slide box
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+.slider {
+  height: 100%;
+}
+.slider-slide {
+  padding-top: 80px;
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+#logo {
+  margin: 30px 0px;
+}
+
+#list {
+  width: 170px;
+  margin: 30px auto;
+  font-size: 20px;
+}
+#list ol {
+  margin-top: 30px;
+}
+#list ol li {
+  text-align: left;
+  list-style: decimal;
+  margin: 10px 0px;
+}
+
+.score-submitted {
+  text-align: center;
+  color: green;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+#game-over-box {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+}
+
+#game-status-box {
+  margin: 20px;
+  font-size: 2.2em;
+  margin-top: 75px;
+}
+
+#game-status-box h2 {
+  color: white;
+}
+
+#score-box {
+  text-align: center;
+  display: inline-block;
+  margin: 0 40px;
+}
+
+#current-score {
+  color: #E67E22;
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  padding: 10px;
+  background: #F2F1EF;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+#timer-box {
+  text-align: center;
+  display: inline-block;
+}
+
+#current-timer {
+  color: #E67E22;
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  padding: 10px;
+  background: #F2F1EF;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+.pane {
+  background: #2574A9;
+}
+
+#game-actions-box {
+  margin-left: 25px;
+}
+
+#game-actions-box div {
+  display: inline-block;
+}
+
+.game-actions-button {
+  color: #E67E22;
+  text-align: center;
+  border: 1px solid grey;
+  border-radius: 3px;
+  height: 30px;
+  width: 100px;
+  padding: 10px;
+  background: #F2F1EF;
+  font-weight: bold;
+  line-height: 10px;
+}

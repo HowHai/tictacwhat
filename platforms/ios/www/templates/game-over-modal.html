@@ -1,0 +1,26 @@
+<div id="game-over-box">
+
+  <h2>Game Over</h2>
+
+  <div ng-hide="gameStatus.message">
+    <p>Enter your name and submit your score!</p>
+
+    <div class="list list-inset" ng-hide="gameStatus.message">
+      <label class="item item-input">
+        <input type="text" placeholder="Name" ng-model="currentUser.username">
+      </label>
+    </div>
+
+    <button class="button button-positive" ng-click="submitScore()">
+      <b>Submit Score</b>
+    </button>
+  </div>
+
+  <div class="score-submitted">
+    {{ gameStatus.message }}
+  </div>
+
+  <button class="button button-positive" ng-click="restartGame('over')" ng-show="gameStatus.message">
+    <b>Play Again</b>
+  </button>
+</div>
