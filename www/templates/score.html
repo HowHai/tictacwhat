@@ -1,17 +1,18 @@
 <ion-view>
   <ion-content>
-    <h1>High Scores</h1>
+    <h1 class="title"><span class="title-half">High</span> <span class="title-other-half">Scores</span></h1>
 
-    <div class="row">
-      <div class="col col-20"><b>Rank</b></div>
-      <div class="col col-33"><b>Score</b></div>
-      <div class="col col-33"><b>User</b></div>
+    <div class="row score-columns">
+      <div class="col col-25 col-offset-10"><b>Rank</b></div>
+      <div class="col col-25"><b>Score</b></div>
+      <div class="col col-25"><b>User</b></div>
     </div>
 
-    <div class="row" ng-repeat="user in scoreBoard.allScores | toArray | orderBy:'score':true">
-      <div class="col col-20">{{ $index + 1}}</div>
-      <div class="col col-33">{{ user.score }}</div>
-      <div class="col col-33">{{ user.username }}</div>
+
+    <div class="row score-rows" ng-repeat="user in scoreBoard.allScores | toArray | orderBy:'score':true">
+      <div class="col col-25 col-offset-10">{{ $index + 1}}</div>
+      <div class="col col-25">{{ user.score }}</div>
+      <div class="col col-25">{{ user.username }}</div>
     </div>
   </ion-content>
 </ion-view>

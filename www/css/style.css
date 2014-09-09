@@ -197,3 +197,16 @@ h1 {
   font-weight: bold;
   font-size: 1.5em;
 }
+
+.score-columns {
+  background: #E67E22;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.score-rows {
+  color: white;
+  text-align: center;
+}
