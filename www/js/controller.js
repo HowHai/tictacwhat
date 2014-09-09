@@ -34,8 +34,8 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   };
 
   $scope.showPopup.draw = function() {
-    $scope.data = {};
-    $scope.data.gameScore = $window.localStorage.getItem('currentScore');
+    // $scope.data = {};
+    // $scope.data.gameScore = $window.localStorage.getItem('currentScore');
 
     $scope.gamePopup.draw = $ionicPopup.show({
       templateUrl: 'templates/game-draw-modal.html',
