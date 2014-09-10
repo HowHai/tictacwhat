@@ -40,6 +40,7 @@
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/README.md \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/templates \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/css/style.css \
+/Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/img/fight.png \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/img/ionic.png \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/js/app.js \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/js/controller.js \
@@ -125,5 +126,6 @@
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/templates/game-over-modal.html \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/templates/menu.html \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/templates/score.html \
+/Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/templates/start-popup.html \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/assets/www/templates/tutorial.html \
 /Users/hmn91733/HaiWork/Phonegap/funprojects/tictacwhat/platforms/android/ant-build/AndroidManifest.xml \

@@ -63,8 +63,8 @@ app.factory('ScoreSystem', function($window) {
       var movePoint = movePointCalculation(playerMovesCount);
 
       // Calculate point.
-      function calculatePoint(movePoint) {
-        switch(movePoint) {
+      function calculatePoint(playerMovesCount, movePoint) {
+        switch(playerMovesCount) {
           case 1:
             return 1
             break;
@@ -82,7 +82,7 @@ app.factory('ScoreSystem', function($window) {
             break;
         }
       }
-      var point = calculatePoint(movePoint);
+      var point = calculatePoint(playerMovesCount, movePoint);
 
       // Get user's current game score.
       var currentScore = $window.localStorage.getItem('currentScore');

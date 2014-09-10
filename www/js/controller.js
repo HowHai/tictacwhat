@@ -104,17 +104,16 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   }
 
   $scope.botMode = function(){
-    gameOver = false;
     botMode = true;
 
     $timeout(function(){
       makeNewBoard(newBoard);
       // generateBoard(newBoard);
       $scope.gameBoard = newBoard;
-    }, 5000);
+    }, 10000);
 
     // When game starts, show countdown.
-    $scope.status.message = 5;
+    $scope.status.message = 10;
     runCounter();
   };
 
@@ -129,6 +128,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       $scope.showPopup.start();
       $timeout(function() {
         $scope.gamePopup.start.close();
+        gameOver = false;
         $scope.status.message = 0;
       }, 1000);
     }
