@@ -285,8 +285,23 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           var moveIndex = getNewIndex(moveToTake);
 
           // Hacky fix for glitch on weird move.
-          if (moveToTake == 6 && gameBoard.length < 4 && areaTaken(moveIndex)) {
-            fatalBlow = 0;
+          if (areaTaken(moveIndex)) {
+            // Check for avaliable corner.
+            var cornerOne = getNewIndex(0);
+            var cornerTwo = getNewIndex(2);
+            var cornerThree = getNewIndex(6);
+            var cornerFour = getNewIndex(8);
+
+            if (!areaTaken(cornerOne)) {
+              fatalBlow = 0;
+            } else if (!areaTaken(cornerTwo)) {
+              fatalBlow = 2;
+            } else if (!areaTaken(cornerThree)) {
+              fatalBlow = 6;
+            } else if (!areaTaken(cornerFour)) {
+              fatalBlow = 8;
+            }
+
           }
           break;
         }
