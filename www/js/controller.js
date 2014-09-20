@@ -135,7 +135,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       $timeout(function() {
         $scope.gamePopup.start.close();
         gameOver = false;
-        $scope.gameStatus.title = "Round 1";
+        $scope.gameStatus.title = "Round " + $scope.gameStatus.round;
         $scope.status.message = 0;
       }, 1000);
     }
