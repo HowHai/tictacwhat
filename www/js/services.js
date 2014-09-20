@@ -2,7 +2,7 @@ var app = angular.module('tictacwhat.services', []);
 
 app.factory('ScoreSystem', function($window) {
   // Firebase data storage.
-  var fireBase = new Firebase("https://tic-tac-what.firebaseio.com");
+  var fireBase = new Firebase("http://tic-tac-what.firebaseio.com");
   var newScorer = fireBase.child('users');
 
   var ScoreSystem = {
@@ -102,7 +102,7 @@ app.factory('ScoreSystem', function($window) {
 
     // Get all users.
     getAllScores: function() {
-      var fireBaseUsers = new Firebase("https://tic-tac-what.firebaseio.com/users");
+      var fireBaseUsers = new Firebase("http://tic-tac-what.firebaseio.com/users");
 
       var allUsers = {};
 

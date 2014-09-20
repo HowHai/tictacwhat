@@ -265,6 +265,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       // Decision is true when player makes trap/odd moves
       if (decision && winningComb.length == 1)
       {
+        console.log('decision:', 'true');
         var moveOne = Math.abs(botMoves.last() - winningMove[0]);
         var moveTwo = Math.abs(botMoves.last() - winningMove[1]);
         var winningComb = getNewIndex(winningComb[0]);
@@ -277,13 +278,22 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
           // Hacky solution to bot's only weakness
           var indexOne = getNewIndex(1);
           var indexEight = getNewIndex(8);
+          console.log('hacky:', 'true');
+          console.log('move:', moveToTake);
 
           fatalBlow = (areaTaken(indexOne) && areaTaken(indexEight) && gameBoard.length == 5) ? 6 : moveToTake;
+          var moveIndex = getNewIndex(moveToTake);
+
+          // Hacky fix for glitch on weird move.
+          if (moveToTake == 6 && gameBoard.length < 4 && areaTaken(moveIndex)) {
+            fatalBlow = 0;
+          }
           break;
         }
         else if (areaTaken(winningMoveOne) && areaTaken(winningMoveTwo))
         {
           var indexThree = getNewIndex(3);
+          console.log('weird:', indexThree);
           fatalBlow = areaTaken(indexThree) ? 1 : 3
         }
       }
@@ -329,6 +339,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       else
       {
         botMoveChecker(winCondition, botMoves, true);
+        console.log('dFatal:', fatalBlow);
         var index = getNewIndex(fatalBlow);
         pushData(index);
       }
