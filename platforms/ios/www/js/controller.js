@@ -14,7 +14,13 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   $scope.currentUser.topScore = $window.localStorage.getItem('topScore');
   $scope.currentUser.currentScore = $window.localStorage.getItem('currentScore') || 0;
   $scope.gameStatus.mode = $stateParams.mode;
-  // $scope.gameStatus.message = 'Click Play to start';
+
+  $scope.gameStatus.round = $window.localStorage.getItem('currentRound') || 1;
+  if ($scope.gameStatus.round <= 1) {
+    $scope.gameStatus.title = 'Click Play';
+  } else {
+    $scope.gameStatus.title = "Round " + $scope.gameStatus.round;
+  }
 
   // Check game mode.
   $scope.checkGameMode = function(territory) {
@@ -96,7 +102,7 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   $scope.restartGame = function(gameStatus) {
     if (gameStatus == 'over') {
       $scope.gamePopup.over.close();
-    } else {
+    } else if(gameStatus == 'draw') {
       $scope.gamePopup.draw.close();
     }
 
@@ -104,17 +110,16 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
   }
 
   $scope.botMode = function(){
-    gameOver = false;
     botMode = true;
 
     $timeout(function(){
       makeNewBoard(newBoard);
       // generateBoard(newBoard);
       $scope.gameBoard = newBoard;
-    }, 10000);
+    }, 1000);
 
     // When game starts, show countdown.
-    $scope.status.message = 10;
+    $scope.status.message = 1;
     runCounter();
   };
 
@@ -129,6 +134,8 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
       $scope.showPopup.start();
       $timeout(function() {
         $scope.gamePopup.start.close();
+        gameOver = false;
+        $scope.gameStatus.title = "Round 1";
         $scope.status.message = 0;
       }, 1000);
     }
@@ -228,6 +235,9 @@ app.controller('MainCtrl', function($scope, $timeout, $ionicPopup, $window, $sta
     {
       // Continue playing.
       $scope.showPopup.draw();
+      ++$scope.gameStatus.round;
+      $window.localStorage.setItem('currentRound', $scope.gameStatus.round);
+
       gameOver = true;
     }
   };

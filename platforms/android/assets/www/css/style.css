@@ -216,3 +216,9 @@ h1 {
 .game-message-box {
   color: #E67E22;
 }
+
+.title .game-board-title {
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+}

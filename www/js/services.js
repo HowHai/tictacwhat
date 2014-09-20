@@ -97,6 +97,7 @@ app.factory('ScoreSystem', function($window) {
     // Reset score when user loses.
     resetCurrentScore: function() {
       $window.localStorage.removeItem('currentScore');
+      $window.localStorage.removeItem('currentRound');
     },
 
     // Get all users.
